@@ -1,7 +1,6 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-import PixelUnShuffle
 from network_module import *
 
 from pytorch_wavelets import DWTForward, DWTInverse
