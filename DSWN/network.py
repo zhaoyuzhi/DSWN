@@ -43,11 +43,11 @@ def weights_init(net, init_type = 'normal', init_gain = 0.02):
 class _DCR_block(nn.Module):
     def __init__(self, channel_in):
         super(_DCR_block, self).__init__()
-        self.conv_1 = nn.Conv2d(in_channels=channel_in, out_channels=int(channel_in/2.), kernel_size=3, stride=1, padding=1)
+        self.conv_1 = nn.Conv2d(in_channels = channel_in, out_channels = int(channel_in/2.), kernel_size = 3, stride = 1, padding = 1)
         self.relu1 = nn.PReLU()
-        self.conv_2 = nn.Conv2d(in_channels=int(channel_in*3/2.), out_channels=int(channel_in/2.), kernel_size=3, stride=1, padding=1)
+        self.conv_2 = nn.Conv2d(in_channels = int(channel_in*3/2.), out_channels=int(channel_in/2.), kernel_size = 3, stride = 1, padding = 1)
         self.relu2 = nn.PReLU()
-        self.conv_3 = nn.Conv2d(in_channels=channel_in*2, out_channels=channel_in, kernel_size=3, stride=1, padding=1)
+        self.conv_3 = nn.Conv2d(in_channels = channel_in*2, out_channels = channel_in, kernel_size = 3, stride = 1, padding = 1)
         self.relu3 = nn.PReLU()
         # self.bn1 = nn.BatchNorm2d(int(channel_in/2.), eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
         # self.bn2 = nn.BatchNorm2d(int(channel_in/2.), eps=1e-05, momentum=0.1, affine=True, track_running_stats=True)
@@ -78,10 +78,10 @@ class DSWN(nn.Module):
         self.IDWT = DWTInverse(wave='haar').cuda()
         # The generator is U shaped
         # Encoder
-        self.E1 = Conv2dLayer(in_channels = 3,  out_channels = 160, kernel_size=3, stride = 1, padding = 1, dilation = 1,  pad_type = opt.pad, activation = 'prelu', norm = opt.norm)
-        self.E2 = Conv2dLayer(in_channels = 3*4, out_channels = 256, kernel_size=3, stride = 1, padding = 1, dilation = 1,  pad_type = opt.pad, activation = 'prelu',norm = opt.norm)
-        self.E3 = Conv2dLayer(in_channels = 3*4*4, out_channels = 256, kernel_size=3, stride = 1, padding = 1, dilation = 1,  pad_type = opt.pad, activation = 'prelu',norm = opt.norm)
-        self.E4 = Conv2dLayer(in_channels = 3*4*16, out_channels = 256, kernel_size=3, stride = 1, padding = 1, dilation = 1,  pad_type = opt.pad, activation = 'prelu',norm = opt.norm)
+        self.E1 = Conv2dLayer(in_channels = 3,  out_channels = 160, kernel_size = 3, stride = 1, padding = 1, dilation = 1,  pad_type = opt.pad, activation = 'prelu', norm = opt.norm)
+        self.E2 = Conv2dLayer(in_channels = 3*4, out_channels = 256, kernel_size = 3, stride = 1, padding = 1, dilation = 1,  pad_type = opt.pad, activation = 'prelu', norm = opt.norm)
+        self.E3 = Conv2dLayer(in_channels = 3*4*4, out_channels = 256, kernel_size = 3, stride = 1, padding = 1, dilation = 1,  pad_type = opt.pad, activation = 'prelu', norm = opt.norm)
+        self.E4 = Conv2dLayer(in_channels = 3*4*16, out_channels = 256, kernel_size = 3, stride = 1, padding = 1, dilation = 1,  pad_type = opt.pad, activation = 'prelu', norm = opt.norm)
         # Bottle neck
         self.BottleNeck = nn.Sequential(
             ResConv2dLayer(256, 3, 1, 1, pad_type = opt.pad, norm = opt.norm),
