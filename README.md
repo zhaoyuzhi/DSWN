@@ -2,7 +2,7 @@
 
 Implementation of our sRGB denoising method in CVPR 2020 NTIRE Workshop
 
-DSWN is an augmentation method based on SGN in ICCV 2019, which introduces DWT / IDWT in network architecture. Besides, an ensemble method is utilized to improve final performance.
+DSWN is an augmentation method based on SGN in ICCV 2019. It introduces DWT / IDWT in network architecture. Besides, an ensemble method is utilized to improve final performance.
 
 Install `pytorch_wavelets` lib before use:
 ```bash
@@ -23,6 +23,7 @@ Then run DSWN:
 cd ..
 cd DSWN
 python train.py
+(please make sure that using the DIV2K dataset as training set)
 ```
 
 If you think this page is helpful for your research, please consider cite:
