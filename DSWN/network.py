@@ -137,7 +137,7 @@ class DSWN(nn.Module):
 
     def _Itransformer(self,out):
         yh = []
-        C=int(out.shape[1]/4)
+        C = int(out.shape[1]/4)
         # print(out.shape[0])
         y = out.reshape((out.shape[0], C, 4, out.shape[-2], out.shape[-1]))
         yl = y[:,:,0].contiguous()
@@ -145,46 +145,10 @@ class DSWN(nn.Module):
  
         return yl, yh
 
-    # def forward(self, x):
-    #     noisy = x
-    #     E1 = self.E1(x)
-    #     DMT1_yl,DMT1_yh = self.DWT(x)
-    #     DMT1 = self._transformer(DMT1_yl, DMT1_yh)
-    #     E2 = self.E2(DMT1)
-    #     DMT2_yl, DMT2_yh = self.DWT(DMT1)
-    #     DMT2 = self._transformer(DMT2_yl, DMT2_yh)
-    #     E3 = self.E3(DMT2)
-    #     DMT3_yl, DMT3_yh = self.DWT(DMT2)
-    #     DMT3 = self._transformer(DMT3_yl, DMT3_yh)
-    #     E4 = self.E4(DMT3)
-    #     E4 = self.DRB41(E4)
-    #     D1=self.D1(E4)
-    #     D1=self._Itransformer(D1)
-    #     IDMT4=self.IDWT(D1)
-    #     D1=torch.cat((IDMT4, E3), 1)
-    #     D1 = self.S1(D1)
-    #     D2=self.DRB31(D1)
-    #     D2=self.D2(D2)
-    #     D2=self._Itransformer(D2)
-    #     IDMT3=self.IDWT(D2)
-    #     D2=torch.cat((IDMT3, E2), 1)
-    #     D2 = self.S2(D2)
-    #     D3=self.DRB21(D2)
-    #     D3=self.D3(D3)
-    #     D3=self._Itransformer(D3)
-    #     IDMT2=self.IDWT(D3)
-    #     D3=torch.cat((IDMT2, E1), 1)
-    #     D3 = self.S3(D3)
-    #     D4=self.DRB11(D3)
-    #     D4=self.DRB12(D4)
-    #     D4 = self.D4(D4)
-    #     x = noisy - D4
-        # return x
-
     def forward(self, x):
         noisy = x
         E1 = self.E1(x)
-        DMT1_yl,DMT1_yh = self.DWT(x)
+        DMT1_yl, DMT1_yh = self.DWT(x)
         DMT1 = self._transformer(DMT1_yl, DMT1_yh)
         E2 = self.E2(DMT1)
         
